@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.4504497, g: 0.4982859, b: 0.56353843, a: 1}
+  m_IndirectSpecularColor: {r: 0.45045, g: 0.49828625, b: 0.5635387, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1146,13 +1146,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1404766635}
-  m_LocalRotation: {x: -0, y: 0.92387956, z: -0, w: 0.38268343}
-  m_LocalPosition: {x: 0.21, y: 0.52000004, z: -0.24}
+  m_LocalRotation: {x: -0, y: 0.75912035, z: -0, w: 0.6509504}
+  m_LocalPosition: {x: 0.114, y: 0.52000004, z: 0.421}
   m_LocalScale: {x: 0.5599999, y: 0.24009, z: 0.5599999}
   m_Children: []
   m_Father: {fileID: 1537909029}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 135, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 98.773, z: 0}
 --- !u!23 &1404766637
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1478,6 +1478,7 @@ GameObject:
   - component: {fileID: 1537909026}
   - component: {fileID: 1537909031}
   - component: {fileID: 1537909025}
+  - component: {fileID: 1537909030}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1497,6 +1498,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 581faeab09778ee4880a5ea5266d1100, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  controller: {fileID: 1537909030}
+  speed: 7
+  playerTransform: {fileID: 1537909029}
+  direction: {x: 0, y: 0, z: 0}
 --- !u!136 &1537909026
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1567,14 +1572,32 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1537909024}
-  m_LocalRotation: {x: 0, y: -0.92387956, z: 0, w: 0.38268343}
-  m_LocalPosition: {x: 9.3, y: 0.983, z: 9.3}
+  m_LocalRotation: {x: -0, y: -0.7113753, z: -0, w: 0.7028123}
+  m_LocalPosition: {x: 9.3, y: 0.983, z: 9.286}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1404766636}
   m_Father: {fileID: 0}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: -135, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90.694, z: 0}
+--- !u!143 &1537909030
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1537909024}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Height: 2
+  m_Radius: 0.5000001
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &1537909031
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1589,7 +1612,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!1 &1791222065
 GameObject:
