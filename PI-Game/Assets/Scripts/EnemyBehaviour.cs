@@ -13,6 +13,10 @@ public class EnemyBehaviour : MonoBehaviour
     [SerializeField]Transform playerTarget;
     [SerializeField]float distance;
     [SerializeField]float howClose;
+    [SerializeField]float timeBetweenAttacks = 1f;
+     [SerializeField] Transform firePoint;
+    bool alreadyAttacked;
+    
     void Start()
     {
         nav = GetComponent<NavMeshAgent>();
@@ -27,8 +31,8 @@ public class EnemyBehaviour : MonoBehaviour
             transform.LookAt(playerTarget);
             nav.SetDestination(playerTarget.position);
         }
-        if(distance <=2.5f){
-            attackPlayer();
+        if(distance <=howClose){
+           attackPlayer();
         }
     }
     void TakeDamage(){
@@ -38,7 +42,14 @@ public class EnemyBehaviour : MonoBehaviour
         Destroy(this.gameObject);
     }
     void attackPlayer(){
-        nav.SetDestination(transform.position);
-        
+        if(!alreadyAttacked){
+            Rigidbody rb = Instantiate(projectile, firePoint.position, firePoint.rotation).GetComponent<Rigidbody>();
+            alreadyAttacked = true;
+            Invoke(nameof(ResetAttack), timeBetweenAttacks);
+        }
+    }
+     private void ResetAttack()
+    {
+        alreadyAttacked = false;
     }
 }

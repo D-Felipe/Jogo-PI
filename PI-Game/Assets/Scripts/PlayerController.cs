@@ -10,15 +10,15 @@ public class PlayerController : MonoBehaviour
     Rigidbody rb;   // Uma variavel para criar o Rigidbody;
     public Transform playerTransform;
     public Vector3 direction;
-
     [SerializeField]float MaxHealth;
     [SerializeField]float currentHealth;
-    [SerializeField]float EnemyDamage;
+    [SerializeField]float EnemyDamage =10f;
 
     void Start()
     {
         currentHealth = MaxHealth;
     }
+
     void Update()
     {
         rb = GetComponent<Rigidbody>(); //Instanciamento do Rigidbody;
@@ -40,14 +40,17 @@ public class PlayerController : MonoBehaviour
             Quaternion newRotation = Quaternion.LookRotation(playerToMouse);
             rb.MoveRotation(newRotation);
         }
-
-        if(Input.GetKeyDown(KeyCode.Space))
-        TakeDamage();
     }
     void TakeDamage(){
         currentHealth -= EnemyDamage;
-        Debug.Log("the enemie gets hurts:"+currentHealth+" is remaining!");
+        Debug.Log("the player gets hurts:"+currentHealth+" is remaining!");
         if(currentHealth <=0)
         Destroy(this.gameObject);
     }
+    void OnTriggerEnter(Collider collider){
+    if(collider.gameObject.tag == "bullet"){
+        TakeDamage();
+    }
+    }
+    
 }
