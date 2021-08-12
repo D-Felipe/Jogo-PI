@@ -8,12 +8,12 @@ public class EnemyBehaviour : MonoBehaviour
     [SerializeField]GameObject projectile;
     [SerializeField]float MaxHealth;
     public float currentHealth;
-    [SerializeField]float damage;
+    [SerializeField]float damage;//que o inimigo toma
     NavMeshAgent nav;
     [SerializeField]Transform playerTarget;
     [SerializeField]float distance;
     [SerializeField]float howClose;
-    [SerializeField]float timeBetweenAttacks = 1f;
+    [SerializeField]float timeBetweenAttacks = 2f;
      [SerializeField] Transform firePoint;
     bool alreadyAttacked;
     
