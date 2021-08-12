@@ -8,10 +8,12 @@ public class Gun : MonoBehaviour
     [SerializeField] GameObject projectile;
     [SerializeField] Transform FirePoint;
     EnemyBehaviour EnemyBehaviour;
-    public float reloadTime = 0.2f;
+    
     bool isReloading = false;
     public int maxAmmo = 8;
     public int currentAmmo;
+    public float reloadTime = 2f;
+
 
     float projectileForce = 20f;
    
@@ -21,6 +23,8 @@ public class Gun : MonoBehaviour
 
     void Update()
     {
+        if(isReloading)
+        return;
         if (Input.GetButtonDown("Fire1"))
         {
             Shoot();
@@ -28,14 +32,19 @@ public class Gun : MonoBehaviour
         }
         if(currentAmmo <= 0)
         {
-            // StartCoroutine(Reload());
+           StartCoroutine(reload());
             return;
         }
-        // if(isReloading)
-        // return;     
+   
      
     }
-     
+     IEnumerator reload(){
+         isReloading=true;
+         Debug.Log("reload");
+         yield return new WaitForSeconds(reloadTime);
+         currentAmmo = maxAmmo;
+         isReloading = false;
+     }
        void Shoot()
         {
              Instantiate(projectile, FirePoint.position, FirePoint.rotation);
@@ -43,19 +52,8 @@ public class Gun : MonoBehaviour
              rb.AddForce(FirePoint.right * projectileForce, ForceMode.Impulse);
              currentAmmo--;
              Debug.Log("Quantidade de tiros:"+currentAmmo);
-            //  currentAmmo--;
+            
         }
 
-        // IEnumerator Reload() 
-        // {
-        //     if(Input.GetKeyDown(KeyCode.Space))
-        //     {
-        //         isReloading=true;
-        //         Debug.Log("Reloading");
-        //         yield return new WaitForSeconds(reloadTime);
-        //         currentAmmo = maxAmmo;
-        //         isReloading = false;
-        //     }
-        // }
   
 }
