@@ -48,7 +48,8 @@ public class PlayerController : MonoBehaviour
         Destroy(this.gameObject);
     }
     void OnTriggerEnter(Collider collider){
-    if(collider.gameObject.tag == "bullet"){
+    if(collider.gameObject.tag == "bullet")
+    {
         TakeDamage();
     }
     }
