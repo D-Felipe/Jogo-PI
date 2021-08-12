@@ -4,25 +4,58 @@ using UnityEngine;
 
 public class Gun : MonoBehaviour
 {
-    [SerializeField] float damage = 100f;
-    [SerializeField] float range = 100f;
-    [SerializeField] GameObject firePoint;
+    [SerializeField] float damage;
+    [SerializeField] GameObject projectile;
+    [SerializeField] Transform FirePoint;
+    EnemyBehaviour EnemyBehaviour;
+    public float reloadTime = 0.2f;
+    bool isReloading = false;
+    public int maxAmmo = 8;
+    public int currentAmmo;
 
-    // Update is called once per frame
+    float projectileForce = 20f;
+   
+   void Start(){
+       currentAmmo = maxAmmo;
+   }
+
     void Update()
     {
         if (Input.GetButtonDown("Fire1"))
         {
             Shoot();
+            
+        }
+        if(currentAmmo <= 0)
+        {
+            // StartCoroutine(Reload());
+            return;
+        }
+        // if(isReloading)
+        // return;     
+     
+    }
+     
+       void Shoot()
+        {
+             Instantiate(projectile, FirePoint.position, FirePoint.rotation);
+             Rigidbody rb = projectile.GetComponent<Rigidbody>();
+             rb.AddForce(FirePoint.right * projectileForce, ForceMode.Impulse);
+             currentAmmo--;
+             Debug.Log("Quantidade de tiros:"+currentAmmo);
+            //  currentAmmo--;
         }
 
-        void Shoot()
-        {
-            RaycastHit hit;
-            if (Physics.Raycast(firePoint.transform.position, firePoint.transform.forward, out hit, range))
-            {
-                Debug.Log(hit.transform.name);
-            }
-        }
-    }
+        // IEnumerator Reload() 
+        // {
+        //     if(Input.GetKeyDown(KeyCode.Space))
+        //     {
+        //         isReloading=true;
+        //         Debug.Log("Reloading");
+        //         yield return new WaitForSeconds(reloadTime);
+        //         currentAmmo = maxAmmo;
+        //         isReloading = false;
+        //     }
+        // }
+  
 }

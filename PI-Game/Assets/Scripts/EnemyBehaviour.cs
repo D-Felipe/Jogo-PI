@@ -7,7 +7,7 @@ public class EnemyBehaviour : MonoBehaviour
 {
     [SerializeField]GameObject projectile;
     [SerializeField]float MaxHealth;
-    [SerializeField]float currentHealth;
+    public float currentHealth;
     [SerializeField]float damage;
     NavMeshAgent nav;
     [SerializeField]Transform playerTarget;
@@ -24,8 +24,6 @@ public class EnemyBehaviour : MonoBehaviour
     }
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
-        TakeDamage();
         distance = Vector3.Distance(playerTarget.position, transform.position);
         if(distance <= howClose){
             transform.LookAt(playerTarget);
@@ -37,7 +35,7 @@ public class EnemyBehaviour : MonoBehaviour
     }
     void TakeDamage(){
         currentHealth -= damage;
-        Debug.Log("the enemie gets hurts:"+currentHealth+" is remaining!");
+        Debug.Log("the enemy gets hurts:"+currentHealth+" is remaining!");
         if(currentHealth <=0)
         Destroy(this.gameObject);
     }
@@ -51,5 +49,11 @@ public class EnemyBehaviour : MonoBehaviour
      private void ResetAttack()
     {
         alreadyAttacked = false;
+    }
+    void OnTriggerEnter(Collider collider){
+    if(collider.gameObject.tag == "bullet")
+    {
+        TakeDamage();
+    }
     }
 }
