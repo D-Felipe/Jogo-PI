@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     public Vector3 direction;
     [SerializeField]float MaxHealth;
     [SerializeField]float currentHealth;
-    [SerializeField]float EnemyDamage =10f;
+    [SerializeField]float EnemyDamage;//que ele toma
 
     void Start()
     {
