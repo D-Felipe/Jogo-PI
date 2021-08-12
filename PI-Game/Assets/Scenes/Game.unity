@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.45019513, g: 0.5002352, b: 0.5754005, a: 1}
+  m_IndirectSpecularColor: {r: 0.450195, g: 0.50023514, b: 0.57540053, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2027,9 +2027,9 @@ MonoBehaviour:
   damage: 20
   projectile: {fileID: 4925475357281586506, guid: e2fec1e59ecfb464daceefed9f7a7ccd, type: 3}
   FirePoint: {fileID: 106901460}
-  reloadTime: 0.2
   maxAmmo: 8
   currentAmmo: 0
+  reloadTime: 2
 --- !u!1 &1998752922
 GameObject:
   m_ObjectHideFlags: 0
