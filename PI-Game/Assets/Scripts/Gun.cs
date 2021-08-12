@@ -19,7 +19,7 @@ public class Gun : MonoBehaviour
         void Shoot()
         {
             RaycastHit hit;
-            if (Physics.Raycast(firePoint.transform.position, firePoint.transform.foward, out hit, range))
+            if (Physics.Raycast(firePoint.transform.position, firePoint.transform.forward, out hit, range))
             {
                 Debug.Log(hit.transform.name);
             }
