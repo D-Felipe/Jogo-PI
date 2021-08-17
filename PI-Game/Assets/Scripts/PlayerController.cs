@@ -47,10 +47,18 @@ public class PlayerController : MonoBehaviour
         if(currentHealth <=0)
         Destroy(this.gameObject);
     }
+    void FireDamage()
+    {
+        
+    }
     void OnTriggerEnter(Collider collider){
     if(collider.gameObject.tag == "bullet")
     {
         TakeDamage();
+    }
+    if (collider.gameObject.tag == "FireAmmo")
+    {
+        
     }
     }
     
