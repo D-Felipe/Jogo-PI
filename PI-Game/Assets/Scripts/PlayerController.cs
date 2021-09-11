@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] public CharacterController controller; // Essa linha aplica o controle do player;
-    [SerializeField] float speed = 7f;  // Isso e a velocidade dele;
+    public float speed = 7f;  // Isso e a velocidade dele;
     RaycastHit hit;  // A variavel necessaria para o player olhar para onde o mouse for;
     Rigidbody rb;   // Uma variavel para criar o Rigidbody;
     public Transform playerTransform;
@@ -13,14 +13,17 @@ public class PlayerController : MonoBehaviour
     [SerializeField]float MaxHealth;
     [SerializeField]float currentHealth;
     [SerializeField]float EnemyDamage;//que ele toma
+    public HealthBarScript Healthbar;
 
     void Start()
     {
+        Healthbar.SetMaxHealth(MaxHealth);
         currentHealth = MaxHealth;
     }
 
     void Update()
     {
+        
         rb = GetComponent<Rigidbody>(); //Instanciamento do Rigidbody;
         float horizontal = Input.GetAxisRaw("Horizontal"); // Controle da Linha X (A,D);
         float vertical = Input.GetAxisRaw("Vertical");     // Controle da Linha Y (W,S);
@@ -30,6 +33,7 @@ public class PlayerController : MonoBehaviour
         if (direction.magnitude >= 0.1) //Isso influencia no controle da velocidade do player;
         {
             controller.Move(direction * speed * Time.deltaTime);
+
         }
 
         //Mec�nica que faz com que o player rotacione de acordo com o mouse;
@@ -44,7 +48,8 @@ public class PlayerController : MonoBehaviour
     void TakeDamage(){
         currentHealth -= EnemyDamage;
         Debug.Log("the player gets hurts:"+currentHealth+" is remaining!");
-        if(currentHealth <=0)
+        Healthbar.SetHealth(currentHealth);
+        if(currentHealth <=0) 
         Destroy(this.gameObject);
     }
     void FireDamage()
@@ -58,8 +63,13 @@ public class PlayerController : MonoBehaviour
     }
     if (collider.gameObject.tag == "FireAmmo")
     {
+      
+        Debug.Log("sou a muniçao de fogo yay");
         
     }
-    }
+}
     
 }
+
+    
+

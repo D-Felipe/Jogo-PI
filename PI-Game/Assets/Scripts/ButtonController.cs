@@ -4,8 +4,9 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine;
 
-public class MenuController : MonoBehaviour
+public class ButtonController : MonoBehaviour
 {
+    teste teste;
     [SerializeField] int nomeCena;
     public Image credits;
     void Update(){
@@ -21,5 +22,15 @@ public class MenuController : MonoBehaviour
     }
     void sair(){
             Application.Quit();
+    }
+    public void adicionaDinheiro(){//adiciona 10 na grana
+        teste.grana+=10;
+    }
+    
+    public void menosDinheiro(){//tira 10 da desgraça em tese né 
+        teste.grana-=10;
+    }
+    public void comprar(int valor){
+        teste.grana -=valor;
     }
 }
