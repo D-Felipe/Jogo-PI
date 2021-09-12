@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyBehaviour : MonoBehaviour
+public class EnemyMeelee : MonoBehaviour
 {
-    [SerializeField]GameObject projectile;
     [SerializeField]float MaxHealth;
     public float currentHealth;
     [SerializeField]float damage;//que o inimigo toma
@@ -14,7 +13,6 @@ public class EnemyBehaviour : MonoBehaviour
     [SerializeField]float distance;
     [SerializeField]float howClose;
     [SerializeField]float timeBetweenAttacks = 2f;
-    [SerializeField] Transform firePoint;
     bool alreadyAttacked;
     
     void Start()
@@ -30,7 +28,7 @@ public class EnemyBehaviour : MonoBehaviour
             nav.SetDestination(playerTarget.position);
         }
         if(distance <=howClose){
-           attackPlayerDistance();
+          Debug.Log("sparta");
         }
     }
     void TakeDamage(){
@@ -38,13 +36,6 @@ public class EnemyBehaviour : MonoBehaviour
         Debug.Log("the enemy gets hurts:"+currentHealth+" is remaining!");
         if(currentHealth <=0)
         Destroy(this.gameObject);
-    }
-    void attackPlayerDistance(){
-        if(!alreadyAttacked){
-            Rigidbody rb = Instantiate(projectile, firePoint.position, firePoint.rotation).GetComponent<Rigidbody>();
-            alreadyAttacked = true;
-            Invoke(nameof(ResetAttack), timeBetweenAttacks);
-        }
     }
      private void ResetAttack()
     {
