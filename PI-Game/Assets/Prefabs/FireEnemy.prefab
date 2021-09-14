@@ -160,6 +160,8 @@ MonoBehaviour:
   howClose: 8
   timeBetweenAttacks: 1
   firePoint: {fileID: 1259774973083894632}
+  Weakness: {fileID: 0}
+  Strength: {fileID: 0}
 --- !u!1 &1259774972201696058
 GameObject:
   m_ObjectHideFlags: 0

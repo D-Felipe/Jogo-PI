@@ -5,15 +5,15 @@ using UnityEngine;
 public class Gun : MonoBehaviour
 {
     [SerializeField] float damage;
-    [SerializeField] GameObject projectile;
+    [SerializeField] GameObject[] projectile;
     [SerializeField] Transform FirePoint;
     EnemyBehaviour EnemyBehaviour;
-    
+    GameObject FireBullet;
     bool isReloading = false;
     public int maxAmmo = 8;
     public int currentAmmo;
     public float reloadTime = 2f;
-
+    public static int AmmoType; //0 = Normal, 1 = Fire, 2 = Leaf, 3 = Water;
 
     float projectileForce = 20f;
    
@@ -35,8 +35,9 @@ public class Gun : MonoBehaviour
            StartCoroutine(reload());
             return;
         }
-   
-     
+      
+
+
     }
      IEnumerator reload(){
          isReloading=true;
@@ -47,13 +48,23 @@ public class Gun : MonoBehaviour
      }
        void Shoot()
         {
-             Instantiate(projectile, FirePoint.position, FirePoint.rotation);
-             Rigidbody rb = projectile.GetComponent<Rigidbody>();
+             Instantiate(projectile[AmmoType], FirePoint.position, FirePoint.rotation);
+             Rigidbody rb = projectile[AmmoType].GetComponent<Rigidbody>();
              rb.AddForce(FirePoint.right * projectileForce, ForceMode.Impulse);
              currentAmmo--;
              Debug.Log("Quantidade de tiros:"+currentAmmo);
+        
             
         }
 
-  
+    //   void ShootFire()
+    //{
+    //    Instantiate(FireBullet, FirePoint.position, FirePoint.rotation);
+    //    Rigidbody rb = FireBullet.GetComponent<Rigidbody>();
+    //    rb.AddForce(FirePoint.right * projectileForce, ForceMode.Impulse);
+    //    currentAmmo--;
+    //    Debug.Log("Quantidade de tiros:" + currentAmmo);
+    //}
+
+   
 }

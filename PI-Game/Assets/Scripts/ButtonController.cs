@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class ButtonController : MonoBehaviour
 {
-    teste teste;
+    
     [SerializeField] int nomeCena;
     public Image credits;
     void Update(){
@@ -20,17 +20,8 @@ public class ButtonController : MonoBehaviour
     public void creditos(){
             credits.gameObject.SetActive(true);
     }
-    void sair(){
+    public void sair(){
             Application.Quit();
     }
-    public void adicionaDinheiro(){//adiciona 10 na grana
-        teste.grana+=10;
-    }
-    
-    public void menosDinheiro(){//tira 10 da desgraça em tese né 
-        teste.grana-=10;
-    }
-    public void comprar(int valor){
-        teste.grana -=valor;
-    }
+   
 }
